@@ -1,1 +1,63 @@
-<p>formulario works!</p>
+<p>
+    <button class="btn btn-warning" (click)="abrir()">Crear</button>
+</p>
+<ng-template #myModalConf let-modal>
+    <div class="modal-content">
+        <div class="modal-header text-white bg-primary mb-3">
+            <h4 class="modal-title">{{modalTitle}}</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                (click)="modal.close('Cerrado desde la ventana')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="anotaciones" #formDir="ngForm">
+                <div [hidden]="formDir.submitted">
+                    <div class="cross-validation"
+                        [class.cross-validation-error]="anotaciones.invalid && (anotaciones.touched || anotaciones.dirty)">
+                        <div class="form-group">
+                            <label for="titulo">Título: </label>
+                            <input type="text" class="form-control" formControlName="titulo" required />
+                            <div *ngIf="titulo.invalid && (titulo.dirty || titulo.touched)" class="alert alert-danger">
+                                <div *ngIf="titulo.errors?.['required']">
+                                    El campo nombre es obligatorio
+                                </div>
+                                <div *ngIf="titulo.errors?.['minlength']">
+                                    El título debe tener al menos 4 caracteres.
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="form-group">
+                            <label for="descripcion">Descripción</label>
+                            <editor formControlName="descripcion"
+                                apiKey="80bmzlpwexc15wzijrn2pf0lan1q9zvjm66tls26j6b85sc1" [init]="{
+                                height: 500,
+                                menubar: false,
+                                plugins: [
+                                'advlist autolink lists link image charmap print preview anchor',
+                                'searchreplace visualblocks code fullscreen',
+                                'insertdatetime media table paste code help wordcount'
+                                ],
+                                toolbar:
+                                'undo redo | formatselect | bold italic backcolor | \
+                                alignleft aligncenter alignright alignjustify | \
+                                bullist numlist outdent indent | removeformat | help'
+                                }"></editor>
+                            <div *ngIf="descripcion.invalid && (descripcion.dirty || descripcion.touched)"
+                                class="alert alert-danger">
+
+                                <div *ngIf="descripcion.errors?.['required']">
+                                    El campo Descripción es obligatorio.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <button type="submit" class="btn btn-primary" (click)="enviar()"
+                    [disabled]="anotaciones.invalid">Enviar</button>
+            </form>
+        </div>
+    </div>
+</ng-template>

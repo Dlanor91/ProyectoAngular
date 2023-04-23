@@ -1,6 +1,6 @@
 <div class="list list-row block">
     <div *ngFor="let dato of datos" class="list-item" data-id="19">
-        <div><a data-abc="true"><span class="w-48 avatar gd-primary">
+        <div><a (click)="eliminar(dato.id)" data-abc="true"><span class="w-48 avatar gd-primary">
                     <img src="/assets/images/boton-eliminar.png" />
                 </span></a></div>
         <div class="flex">

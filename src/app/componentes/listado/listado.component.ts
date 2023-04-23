@@ -30,7 +30,7 @@ export class ListadoComponent implements OnInit {
           console.error('Error', error);
         }
       });
-  }/*
+  }
   eliminar(id:any)
   {
     swal.fire({
@@ -72,5 +72,5 @@ export class ListadoComponent implements OnInit {
       }
     });
   }
-*/
+
 }
