@@ -3,7 +3,11 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  base_url: "https://www.api.tamila.cl/",
+  api: "https://www.api.tamila.cl/api/",
+  correo:"info@tamila.cl",
+  password:"p2gHNiENUw"
 };
 
 /*
